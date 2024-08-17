@@ -78,3 +78,4 @@ jobs:
         commit_message: 'Format code'
         branch: ${{ github.head_ref }}
         github_token: ${{ secrets.GH_TOKEN }}
+        debug_mode: true

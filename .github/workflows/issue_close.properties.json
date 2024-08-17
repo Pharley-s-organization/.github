@@ -1,0 +1,22 @@
+{
+    "name": "Issue close action",
+    "description": "GitHub actions workflows: [In Progress] -> [Done].",
+    "iconName": "git-pull-request-closed",
+    "file": ".github/workflows/issue_close.yml",
+    "categories": [
+        "Python",
+        "C",
+        "C++",
+        "Dart"
+    ],
+    "filePatterns": [
+        "^.+\\.go$",
+        "^.+\\.js$",
+        "^.+\\.ts$",
+        "^.+\\.py$",
+        "^.+\\.c$",
+        "^.+\\.(cpp|cc|cxx)$",
+        "^.+\\.dart$",
+        ".*\\.md$"
+    ]
+}

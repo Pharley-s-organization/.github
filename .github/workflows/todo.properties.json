@@ -1,0 +1,22 @@
+{
+    "name": "ToDo promotion action.",
+    "description": "GitHub actions workflows: [ToDo] -> [Ready].",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/todo.yml",
+    "categories": [
+        "Python",
+        "C",
+        "C++",
+        "Dart"
+    ],
+    "filePatterns": [
+        "^.+\\.go$",
+        "^.+\\.js$",
+        "^.+\\.ts$",
+        "^.+\\.py$",
+        "^.+\\.c$",
+        "^.+\\.(cpp|cc|cxx)$",
+        "^.+\\.dart$",
+        ".*\\.md$"
+    ]
+}

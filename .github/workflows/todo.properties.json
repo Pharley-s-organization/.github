@@ -1,6 +1,6 @@
 {
     "name": "ToDo promotion action.",
-    "description": "GitHub actions workflows: [ToDo] -> [Ready].",
+    "description": "Opens an issue when a linked item is moved from ToDo to Ready",
     "iconName": "issue-tracked",
     "file": ".github/workflows/todo.yml",
     "categories": [

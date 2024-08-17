@@ -1,0 +1,26 @@
+{
+    "name": "Code Formatter",
+    "description": "Formats code based on the language when pushing to the repo.",
+    "iconName": "code",
+    "file": ".github/workflows/formatter.yml",
+    "categories": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Go",
+      "C",
+      "C++"
+    ],
+    "filePatterns": [
+      "^.+\\.py$",
+      "^.+\\.js$",
+      "^.+\\.ts$",
+      "^.+\\.jsx$",
+      "^.+\\.tsx$",
+      "^.+\\.go$",
+      "^.+\\.c$",
+      "^.+\\.(cpp|cc|cxx)$",
+      "^.+\\.h$"
+    ]
+  }
+  

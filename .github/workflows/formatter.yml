@@ -1,0 +1,39 @@
+name: Code Formatter
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  format-code:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Format Python code
+      run: |
+        pip install black
+        black --line-length=120 .
+
+    - name: Format JavaScript/TypeScript code
+      run: |
+        npm install --global prettier
+        prettier --write '**/*.{js,ts,jsx,tsx}'
+
+    - name: Format Go code
+      run: |
+        go install golang.org/x/tools/cmd/goimports@latest
+        goimports -w .
+
+    - name: Format C/C++ code
+      run: |
+        clang-format -i --style=Google $(find . -name '*.c' -or -name '*.cpp' -or -name '*.h')
+
+    - name: Commit formatted code
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: 'Format code'
+        branch: ${{ github.head_ref }}

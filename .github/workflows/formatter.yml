@@ -3,6 +3,7 @@ name: Code Formatter
 on:
   push:
     branches: ['*']
+  workflow_call:
 
 jobs:
 

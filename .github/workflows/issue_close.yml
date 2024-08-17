@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   issues:
     types: [edited]
+  workflow_call:
 
 jobs:
   close_issue_and_open_pr:

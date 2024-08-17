@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   issues:
     types: [edited]
+  workflow_call:
 
 jobs:
   open_issue_on_status_change:

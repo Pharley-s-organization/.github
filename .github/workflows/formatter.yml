@@ -2,8 +2,7 @@ name: Code Formatter
 
 on:
   push:
-    branches:
-      - main
+    branches: ['*']
 
 jobs:
 
@@ -15,22 +14,62 @@ jobs:
 
     - name: Format Python code
       run: |
-        pip install black
-        black --line-length=120 .
+        python_files=$(find . -name '*.py')
+        if [ -n "$python_files" ]; then
+          pip install black
+          black --line-length=120 $python_files
+        else
+          echo "No Python files found."
+        fi
 
     - name: Format JavaScript/TypeScript code
       run: |
-        npm install --global prettier
-        prettier --write '**/*.{js,ts,jsx,tsx}'
+        js_files=$(find . -name '*.js' -or -name '*.ts' -or -name '*.jsx' -or -name '*.tsx')
+        if [ -n "$js_files" ]; then
+          npm install --global prettier
+          prettier --write $js_files
+        else
+          echo "No JavaScript/TypeScript files found."
+        fi
 
     - name: Format Go code
       run: |
-        go install golang.org/x/tools/cmd/goimports@latest
-        goimports -w .
+        go_files=$(find . -name '*.go')
+        if [ -n "$go_files" ]; then
+          go install golang.org/x/tools/cmd/goimports@latest
+          goimports -w $go_files
+        else
+          echo "No Go files found."
+        fi
 
     - name: Format C/C++ code
       run: |
-        clang-format -i --style=Google $(find . -name '*.c' -or -name '*.cpp' -or -name '*.h')
+        c_files=$(find . -name '*.c' -or -name '*.cpp' -or -name '*.h')
+        if [ -n "$c_files" ]; then
+          clang-format -i --style=Google $c_files
+        else
+          echo "No C/C++ files found."
+        fi
+
+    - name: Format Java code
+      run: |
+        java_files=$(find . -name '*.java')
+        if [ -n "$java_files" ]; then
+          # Install and run Java formatter (e.g., google-java-format)
+          echo "Java formatter not implemented yet."
+        else
+          echo "No Java files found."
+        fi
+
+    - name: Format Dart code
+      run: |
+        dart_files=$(find . -name '*.dart')
+        if [ -n "$dart_files" ]; then
+          # Install and run Dart formatter (e.g., dartfmt)
+          echo "Dart formatter not implemented yet."
+        else
+          echo "No Dart files found."
+        fi
 
     - name: Commit formatted code
       uses: stefanzweifel/git-auto-commit-action@v4

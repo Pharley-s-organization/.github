@@ -1,0 +1,37 @@
+# GitHub actions workflows: [ToDo] -> [Ready]
+name: Open Issue on Work Item Status Change
+
+on:
+  workflow_dispatch:
+  issues:
+    types: [edited]
+
+jobs:
+  open_issue_on_status_change:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if status moved to "Ready"
+      id: check_status
+      run: |
+        ISSUE_NUMBER=${{ github.event.issue.number }}
+        STATUS_BEFORE=$(jq -r '.changes.labels.from[].name' <<<"${{ github.event }}")
+        STATUS_AFTER=$(jq -r '.issue.labels[].name' <<<"${{ github.event }}")
+        
+        echo "Status before: $STATUS_BEFORE"
+        echo "Status after: $STATUS_AFTER"
+        
+        if [[ "$STATUS_BEFORE" == *"Todo"* ]] && [[ "$STATUS_AFTER" == *"Ready"* ]]; then
+          echo "status_changed=true" >> $GITHUB_ENV
+        else
+          echo "status_changed=false" >> $GITHUB_ENV
+        fi
+
+    - name: Open a new issue
+      if: env.status_changed == 'true'
+      run: |
+        ISSUE_TITLE="New Task: ${{ github.event.issue.title }}"
+        ISSUE_BODY="A new work item has moved from 'Todo' to 'Ready'."
+        curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d "{\"title\": \"${ISSUE_TITLE}\", \"body\": \"${ISSUE_BODY}\", \"labels\": [\"task\"]}" \
+          https://api.github.com/repos/${{ github.repository }}/issues

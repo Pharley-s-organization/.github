@@ -1,0 +1,58 @@
+# GitHub actions workflows: [In Progress] -> [Done]
+name: Close Issue and Open PR on Status Change
+
+on:
+  workflow_dispatch:
+  issues:
+    types: [edited]
+
+jobs:
+  close_issue_and_open_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if status moved to "Done"
+      id: check_status
+      run: |
+        STATUS_BEFORE=$(jq -r '.changes.labels.from[].name' <<<"${{ github.event }}")
+        STATUS_AFTER=$(jq -r '.issue.labels[].name' <<<"${{ github.event }}")
+        
+        echo "Status before: $STATUS_BEFORE"
+        echo "Status after: $STATUS_AFTER"
+        
+        if [[ "$STATUS_BEFORE" == *"In Progress"* ]] && [[ "$STATUS_AFTER" == *"Done"* ]]; then
+          echo "status_changed=true" >> $GITHUB_ENV
+        else
+          echo "status_changed=false" >> $GITHUB_ENV
+        fi
+
+    - name: Close the issue
+      if: env.status_changed == 'true'
+      run: |
+        ISSUE_NUMBER=${{ github.event.issue.number }}
+        curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d '{"state": "closed"}' \
+          https://api.github.com/repos/${{ github.repository }}/issues/${ISSUE_NUMBER}
+
+    - name: Open a pull request
+      if: env.status_changed == 'true'
+      run: |
+        BRANCH_NAME="feature/${{ github.event.issue.number }}"
+        PR_TITLE="Resolve #${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
+        PR_BODY="This PR closes the issue #${{ github.event.issue.number }} and implements the changes described in the issue."
+
+        # Create a new branch from the main branch
+        git checkout -b $BRANCH_NAME origin/main
+        
+        # Make a dummy commit (for demonstration; in a real scenario, code changes would exist)
+        echo "Closing issue #${{ github.event.issue.number }}" > README.md
+        git add README.md
+        git commit -m "Close #${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
+
+        # Push the branch to the repository
+        git push origin $BRANCH_NAME
+        
+        # Create the pull request
+        curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d "{\"title\": \"${PR_TITLE}\", \"head\": \"$BRANCH_NAME\", \"base\": \"main\", \"body\": \"${PR_BODY}\"}" \
+          https://api.github.com/repos/${{ github.repository }}/pulls

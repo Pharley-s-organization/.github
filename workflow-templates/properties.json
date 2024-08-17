@@ -3,6 +3,7 @@
         "name": "Issue close action",
         "description": "GitHub actions workflows: [In Progress] -> [Done].",
         "iconName": "git-pull-request-closed",
+        "file": ".github/workflow-templates/issue_close.yml",
         "categories": [
             "Python",
             "C",
@@ -24,6 +25,7 @@
         "name": "ToDo promotion action.",
         "description": "GitHub actions workflows: [ToDo] -> [Ready].",
         "iconName": "issue-tracked",
+        "file": ".github/workflow-templates/todo.yml",
         "categories": [
             "Python",
             "C",

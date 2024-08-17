@@ -77,4 +77,4 @@ jobs:
       with:
         commit_message: 'Format code'
         branch: ${{ github.head_ref }}
-        token: ${{ secrets.GH_TOKEN }}
+        github_token: ${{ secrets.GH_TOKEN }}

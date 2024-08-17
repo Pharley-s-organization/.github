@@ -1,4 +1,3 @@
-# GitHub actions workflows: [In Progress] -> [Done]
 name: Close Issue and Open PR on Status Change
 
 on:

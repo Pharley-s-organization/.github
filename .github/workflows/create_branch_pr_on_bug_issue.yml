@@ -3,6 +3,8 @@ name: Create Bug Fix Branch
 on:
   issues:
     types: [labeled]
+  workflow_call:
+  
 
 jobs:
 

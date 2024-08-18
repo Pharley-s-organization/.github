@@ -6,6 +6,7 @@ on:
       - '**/*.c'
       - '**/*.cpp'
       - '**/*.h'
+  workflow_call:
 
 jobs:
   build-and-compile:

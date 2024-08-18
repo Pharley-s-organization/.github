@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.py'
+  workflow_call:
 
 jobs:
     dependency-management:

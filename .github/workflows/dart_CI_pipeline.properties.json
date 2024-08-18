@@ -1,0 +1,12 @@
+{
+    "name": "Dart CI Pipeline",
+    "description": "Lints and tests dart files.",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/todo.yml",
+    "categories": [
+        "Dart"
+    ],
+    "filePatterns": [
+        "^.+\\.dart$"
+    ]
+}

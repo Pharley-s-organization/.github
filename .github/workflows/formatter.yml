@@ -76,6 +76,9 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: 'Format code'
+        commit_options: '--amend --no-edit'
+        push_options: '--force'
         branch: ${{ github.head_ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      

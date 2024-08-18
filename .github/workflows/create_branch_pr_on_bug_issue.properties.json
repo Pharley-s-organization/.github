@@ -1,0 +1,6 @@
+{
+    "name": "Branch and PR creator on bug issue",
+    "description": "Creates a branch and PR whenever an existing issue is labelled as bug.",
+    "iconName": "git-pull-request-closed",
+    "file": ".github/workflows/create_branch_pr_on_bug_issue.yml"
+}

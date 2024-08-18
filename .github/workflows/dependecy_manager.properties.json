@@ -2,7 +2,7 @@
     "name": "Dependency manager",
     "description": "Checks and install new dependecies",
     "iconName": "issue-tracked",
-    "file": ".github/workflows/todo.yml",
+    "file": ".github/workflows/dependency_manager.yml",
     "categories": [
         "Python"
     ],

@@ -1,0 +1,6 @@
+{
+    "name": "Automatically labels an issue",
+    "description": "Labels an issue when it's created.",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/automatic_labelling_and_issue_mngmt.yml"
+}

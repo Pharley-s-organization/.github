@@ -1,0 +1,20 @@
+name: Automatic Labeling and Issue Management
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-label issues and PRs
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: |
+            feature: /feature/, /enhancement/
+            bug: /bug/
+            documentation: /docs/, /documentation/

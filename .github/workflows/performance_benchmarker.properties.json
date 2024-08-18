@@ -1,0 +1,12 @@
+{
+    "name": "Benchmarker for python projects",
+    "description": "Benchmarks a python file",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/performance_benchmarker.yml",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": [
+        "^.+\\.py$"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Linter for python projects",
+    "description": "Lints file in project",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/python_linter.yml",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": [
+        "^.+\\.py$"
+    ]
+}

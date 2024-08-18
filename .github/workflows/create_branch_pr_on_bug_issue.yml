@@ -1,0 +1,39 @@
+name: Create Bug Fix Branch
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+
+  create-branch:
+    if: ${{ github.event.label.name == 'bug' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Create bug fix branch
+      run: |
+        BRANCH_NAME=bugfix/issue-${{ github.event.issue.number }}-${{ github.event.issue.title }}
+        git checkout -b $BRANCH_NAME
+        
+    - name: Commit changes
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit --allow-empty -m "Create bug fix branch for #${{ github.event.issue.number }}"
+        
+    - name: Push changes
+      run: git push --set-upstream origin $BRANCH_NAME
+      
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ env.BRANCH_NAME }}
+        title: "Fix for #${{ github.event.issue.number }} - ${{ github.event.issue.title }}"
+        body: |
+          This pull request addresses the bug reported in #${{ github.event.issue.number }}:
+          
+          ${{ github.event.issue.body }}

@@ -1,0 +1,14 @@
+{
+    "name": "c & c++ CI pipeline",
+    "description": "Build and compiles code, then performs static analysis.",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/c_c++_pipeline.yml",
+    "categories": [
+        "C",
+        "C++"
+    ],
+    "filePatterns": [
+        "^.+\\.c$",
+        "^.+\\.(cpp|cc|cxx)$"
+    ]
+}

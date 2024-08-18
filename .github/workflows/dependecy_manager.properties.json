@@ -1,0 +1,12 @@
+{
+    "name": "Dependency manager",
+    "description": "Checks and install new dependecies",
+    "iconName": "issue-tracked",
+    "file": ".github/workflows/todo.yml",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": [
+        "^.+\\.py$"
+    ]
+}

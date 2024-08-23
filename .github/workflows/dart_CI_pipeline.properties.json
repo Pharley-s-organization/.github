@@ -2,7 +2,7 @@
     "name": "Dart CI Pipeline",
     "description": "Lints and tests dart files.",
     "iconName": "issue-tracked",
-    "file": ".github/workflows/todo.yml",
+    "file": ".github/workflows/dart_CI_pipeline.yml",
     "categories": [
         "Dart"
     ],

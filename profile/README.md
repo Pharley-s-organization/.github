@@ -15,3 +15,5 @@ A lot of:
 🏎️ Use repo-template as a template for new templates.
 
 🎓 PoliMi: some of the projects will target my college's stuff.
+
+🤗 ML models hosted on Hugging Faces: [HF - Organization](https://huggingface.co/pharley-s-organization)
